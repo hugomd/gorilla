@@ -86,13 +86,13 @@ func newToken(tokenType token.TokenType, ch byte) token.Token {
 	return token.Token{Type: tokenType, Literal: string(ch)}
 }
 
-func (l *Lexer) makeTwoCharToken(tokenType token.TokenType, expectedNextCh byte, originalType token.TokenType) token.Token {
+func (l *Lexer) makeTwoCharToken(tokenType token.TokenType, expectedNextCh byte, fallbackType token.TokenType) token.Token {
 	ch := l.ch
 	if l.peekChar() == expectedNextCh {
 		l.readChar()
 		return token.Token{Type: tokenType, Literal: string(ch) + string(l.ch)}
 	}
-	return token.Token{Type: originalType, Literal: string(ch)}
+	return token.Token{Type: fallbackType, Literal: string(ch)}
 }
 
 func (l *Lexer) peekChar() byte {
