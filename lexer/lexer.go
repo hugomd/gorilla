@@ -98,9 +98,8 @@ func (l *Lexer) makeTwoCharToken(tokenType token.TokenType, expectedNextCh byte,
 func (l *Lexer) peekChar() byte {
 	if l.readPosition >= len(l.input) {
 		return 0
-	} else {
-		return l.input[l.readPosition]
 	}
+	return l.input[l.readPosition]
 }
 
 func (l *Lexer) readIdentifier() string {
